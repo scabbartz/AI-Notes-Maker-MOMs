@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joules V2 - Meeting Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Joules V2 - Meeting Dashboard</h1>
+
+        <div class="main-sections">
+            <div class="processing-section">
+                <div class="section" id="audioSection">
+                    <h2>1. Record or Select Audio</h2>
+                    <div class="controls">
+                        <button id="recordButton">Record New Meeting</button>
+                        <button id="stopButton" disabled>Stop</button>
+                    </div>
+                    <div class="audio-playback">
+                        <h3>Playback:</h3>
+                        <audio id="audioPlayback" controls></audio>
+                    </div>
+                    <hr>
+                    <p><b>OR</b> Upload an existing audio file:</p>
+                    <input type="file" id="audioFileInput" accept="audio/*">
+                    <p>Selected file: <span id="selectedFileName">None</span></p>
+                    <audio id="uploadedAudioPlayback" controls style="display: none;"></audio>
+                </div>
+
+                <div class="section" id="transcriptionSection">
+                    <h2>2. Process Audio</h2>
+                    <button id="transcribeButton" disabled>Process Audio (Transcribe & Summarize)</button>
+                    <div id="processingProgress" class="progress-indicator" style="display: none;">
+                        <p id="progressMessage">Processing...</p>
+                        <div class="loader"></div>
+                    </div>
+                </div>
+
+                <div class="section" id="currentMeetingOutputSection" style="display: none;">
+                    <h2>Current Meeting Output</h2>
+                    <h3>Transcript:</h3>
+                    <textarea id="transcriptOutput" rows="10" readonly></textarea>
+                    <h3>Summary:</h3>
+                    <textarea id="summaryOutput" rows="8" readonly></textarea>
+                    <button id="saveMeetingButton" class="save-btn">Save Meeting to Dashboard</button>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h2>Meeting History</h2>
+                <div id="meetingListContainer">
+                    <ul id="meetingList"></ul>
+                </div>
+                <button id="clearHistoryButton" class="danger-btn">Clear All History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

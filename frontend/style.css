@@ -1,0 +1,340 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-sections {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 20px;
+}
+
+.processing-section {
+    flex: 2; /* Takes more space */
+    min-width: 400px; /* Minimum width before wrapping */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between sections within processing-section */
+}
+
+.dashboard-section {
+    flex: 1;
+    min-width: 300px; /* Minimum width for dashboard */
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    align-self: flex-start; /* Align to top */
+}
+
+
+.section {
+    background-color: white;
+    padding: 20px;
+    /* margin-bottom: 20px; -- Handled by gap in flex parent */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    /* max-width: 700px; -- Removed for flex item */
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #0056b3;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.section h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+
+.controls button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+}
+
+.controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.controls button#stopButton {
+    background-color: #dc3545;
+}
+
+.audio-playback, .file-input-area {
+    margin-top: 15px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.instructions {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.instructions code {
+    background-color: #d1d1d1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+textarea { /* General textarea styling */
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: monospace;
+    min-height: 150px; /* Default min-height */
+}
+
+
+input[type="file"] {
+    margin-top: 10px;
+    padding: 8px;
+}
+
+#selectedFileName {
+    font-style: italic;
+    color: #555;
+    display: inline-block; /* Ensure it doesn't break line unnecessarily */
+    margin-left: 5px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.optional-btn {
+    background-color: #6c757d;
+}
+
+#transcribeButton { /* Now Process Audio button */
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#transcribeButton:disabled {
+    background-color: #cccccc;
+}
+
+.progress-indicator {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff3cd; /* Lighter yellow for progress */
+    border: 1px solid #ffeeba;
+    color: #856404;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff; /* Match primary button blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+textarea#transcriptOutput {
+    min-height: 150px;
+    background-color: #f8f9fa;
+}
+
+#summarizeButton {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#summarizeButton:disabled {
+    background-color: #cccccc;
+}
+
+textarea#summaryOutput {
+    min-height: 100px;
+    background-color: #e9f7fd;
+}
+
+/* Dashboard Specific Styles */
+.dashboard-section h2 {
+    margin-top: 0;
+    color: #343a40;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+#meetingListContainer {
+    max-height: 450px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+#meetingList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#meetingList li {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* Try to keep on one line */
+}
+
+#meetingList li:last-child {
+    border-bottom: none;
+}
+
+#meetingList li .meeting-info {
+    display: flex;
+    flex-direction: column; /* Stack name and timestamp */
+    flex-grow: 1;
+    overflow: hidden; /* For ellipsis on name */
+    margin-right: 10px;
+}
+
+
+#meetingList li .meeting-name {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#meetingList li .meeting-timestamp {
+    font-size: 0.8em;
+    color: #6c757d;
+}
+
+#meetingList li .meeting-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* Prevent buttons from shrinking too much */
+}
+
+#meetingList li .view-btn,
+#meetingList li .delete-btn {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    margin-left: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    white-space: nowrap; /* Keep button text on one line */
+}
+
+#meetingList li .view-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#meetingList li .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.empty-list-item {
+    padding: 20px;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.save-btn {
+    background-color: #28a745 !important;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.save-btn:disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed;
+}
+
+
+.danger-btn {
+    background-color: #dc3545 !important;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make clear history button full width */
+}
+.danger-btn:disabled {
+    background-color: #cccccc !important;
+}
+
+#currentMeetingOutputSection h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#currentMeetingOutputSection textarea {
+    background-color: #fff; /* Ensure textareas in this section have white background */
+}
+
+/* Optional: Remove download button if not a primary feature for this step */
+/* #downloadButton { display: none; } */
+```
